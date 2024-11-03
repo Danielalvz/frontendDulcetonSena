@@ -1,0 +1,155 @@
+/* general */
+/* Header */
+header {
+    padding: 0 20px;
+}
+
+.logo {
+    width: 110px;
+}
+
+nav button {
+    border-radius: 16px!important;
+}
+
+.btn-nav {
+    border-radius: 12px;
+    min-width: 100px; 
+}
+
+.btn-nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn-color {
+    background-color: rgb(226, 168, 102);
+    color: black;
+    border-color: rgba(137, 43, 226, 0);
+    font-weight: bold;
+}
+
+.btn-color:hover {
+    background-color: rgb(187, 77, 30);
+    border-color: rgba(137, 43, 226, 0);
+}
+
+/* footer  */
+.footer {
+    margin-top: 40px;
+    padding-top: 40px;
+    background-color: #F8F9FA;
+}
+.footer i {
+    font-size: 15px;
+    width: 80%;
+    margin: auto;
+}
+
+/* registro */
+h3 {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.error {
+    color: rgb(166, 133, 133) !important;
+    font-size: 0.8em;
+}
+
+#spanLogin {
+    padding: 30px 0;
+}
+
+/*  */
+
+.user-register {
+    width: 75%;
+}
+
+.user-register input, .user-register select {
+    border-radius: 16px;
+    border: 1px solid #7F7F7F;
+}
+
+.user-register button {
+    border-radius: 16px;
+}
+
+.user-register div {
+    padding: 0;
+}
+
+/* Arrow icon */
+.custom-select {
+    position: relative;
+    width: 100%;
+    appearance: none; /* Eliminar la flecha por defecto */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.custom-select-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    pointer-events: none; /* Para que el icono no interfiera con la selección */
+    transform: translateY(-50%);
+    color: #7F7F7F;
+}
+
+.select-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Pass visibility*/
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    padding-right: 30px; /* Espacio para el icono */
+    flex-grow: 1;
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #7F7F7F;
+}
+
+.form-check {
+    padding-left: 1.8em !important;
+    color: #343A40;
+    font-size: 0.9em;
+}
+
+
+@media (max-width: 480px) {
+    .user-register {
+        width: 100%;
+    }
+}
+
+
+/* login */
+.form-login {
+    width: 75%;
+}
+
+.form-check {
+    padding-left: 39px!important;
+}
+
+@media (max-width: 480px) {
+    .form-login {
+        width: 100%;
+    }
+}
+
+.img-login {
+    width: 400px;
+    margin: auto;
+}

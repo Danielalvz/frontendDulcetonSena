@@ -1,0 +1,98 @@
+.sidebar i {
+    color: white;
+}
+
+.menu {
+    background-color: rgb(226, 168, 102);
+    color: black;
+}
+
+.menu a,
+.menu span,
+.menu p,
+.info a {
+    color: rgb(255, 255, 255) !important;
+    text-decoration: none;
+}
+
+.menu i {
+    color: rgb(83, 39, 27);
+}
+
+.marca {
+    font-family: 'Segoe Script', cursive;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.img-logo {
+    margin-left: .4rem !important;
+    width: 40px;
+    height: 40px;
+}
+
+/* charts */
+.char-inner-1 {
+    background-color: rgb(152, 77, 33);
+}
+
+.char-inner-2 {
+    background-color: rgb(130, 26, 26);
+}
+
+.char-inner-3 {
+    background-color: rgb(229, 184, 100);
+}
+
+.char-inner-4 {
+    background-color: rgb(39, 147, 104);
+}
+
+.char-footer-1 {
+    background-color: #ff9c5b !important;
+}
+
+.char-footer-2 {
+    background-color: #f5634a !important;
+}
+
+.char-footer-3 {
+    background-color: #fcb46c !important;
+}
+
+.char-footer-4 {
+    background-color: rgba(205,92,92,255) !important;
+}
+
+.char-footer-5 {
+    background-color: #ed303c !important;
+}
+
+.char-footer-6 {
+    background-color: #3b8183!important;
+}
+
+.char-boxes i {
+    transition: transform 0.3s ease-in-out;
+}
+
+.char-boxes i:hover {
+    transform: scale(1.5);
+}
+/* MAIN */
+.card-img-overlay {
+    background-color: rgba(0, 0, 0, 0.636);
+    /* Fondo oscuro semitransparente */
+    color: white;
+}
+
+.card-img {
+    width: 100%;
+    height: 150px; 
+    object-fit: cover; /* La imagen se ajustará al contenedor sin deformarse */
+  }
+
+  .main i {
+    color: aliceblue;
+    z-index: 2;
+  }
