@@ -1,0 +1,113 @@
+
+<hr>
+<div class="row">
+    <button class="btn btn-warning m-auto" style="min-width: 300px;" (click)="mostrarForm('ver')">Insertar
+        Cliente</button>
+</div>
+<!-- Formulario -->
+<div id="formulario" *ngIf="mform == true">
+    <form class="m-auto w-75">
+        <h1 *ngIf="botonesForm">Editar Cliente</h1>
+        <div class="row mt-4">
+            <div class="col-lg-6">
+                <label for="identificacion">Identificación</label>
+                <input type="text" id="identificacion" class="form-control" placeholder="Documento de identidad"
+                    name="identificacion" [(ngModel)]="obj_cliente.identificacion">
+                <span style="color: red;" class="error" *ngIf="validar_identificacion == false">Ingrese el
+                    número de identificacion</span>
+            </div>
+            <div class="col-lg-6">
+                <label for="nombre">Nombre cliente</label>
+                <input type="text" id="nombre" placeholder="Nombre del cliente" class="form-control" name="nombre"
+                    [(ngModel)]="obj_cliente.nombre">
+                <span class="error" *ngIf="validar_nombre == false">Ingrese el nombre del cliente</span>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-6">
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" placeholder="Direccion del cliente" class="form-control"
+                    name="direccion" [(ngModel)]="obj_cliente.direccion">
+                <span class="error" *ngIf="validar_direccion == false">Ingrese la dirección del
+                    cliente</span>
+            </div>
+            <div class="col-lg-6">
+                <label for="telefono">Telefono</label>
+                <input type="text" id="telefono" placeholder="Telefono del cliente" class="form-control" name="telefono"
+                    [(ngModel)]="obj_cliente.telefono">
+                <span class="error" *ngIf="validar_telefono == false">Ingrese el teléfono del
+                    cliente</span>
+            </div>
+        </div>
+
+
+
+        <div class="row mt-4">
+
+            <div class="col-lg-6">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Correo del cliente" class="form-control" name="email"
+                    [(ngModel)]="obj_cliente.email">
+                <span class="error" *ngIf="validar_email == false">Ingrese el correo del cliente</span>
+            </div>
+            <div class="col-lg-6">
+                <label for="fo_ciudad">Ciudad</label>
+                <select id="fo_ciudad" class="form-control form-select" [(ngModel)]="obj_cliente.fo_ciudad"
+                    name="fo_ciudad">
+                    <option [ngValue]="0" label="Seleccione Ciudad" selected="selected">Seleccione Ciudad</option>
+                    <option *ngFor="let ciudad of ciudad" [ngValue]="ciudad.id_ciudad" label="{{ciudad.nombre}}">
+                    </option>
+                </select>
+                <span class="error" *ngIf="validar_fo_ciudad == false">Seleccione ciudad</span>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <input type="button" value="Guardar" class="btn btn-primary mt-2 col-lg-6" style="width: 100%;"
+                (click)="validarCliente('guardar')" *ngIf="!botonesForm">
+            <input type="button" value="Editar" class="btn btn-primary mt-2 col-lg-6" style="width: 100%;"
+                (click)="validarCliente('editar')" *ngIf="botonesForm">
+
+            <input type="button" value="Cancelar" class="btn btn-secondary mt-2 col-lg-6" style="width: 100%;"
+                (click)="mostrarForm('ocultar')">
+
+        </div>
+    </form>
+</div>
+<div id="tabla">
+    <div class="table-responsive">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11">
+                <table class="table">
+                    <tr>
+                        <th>Identificación</th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Ciudad</th>
+                        <th>Acciones</th>
+
+                    </tr>
+                    <tr *ngFor="let cliente of cliente">
+                        <td>{{cliente.identificacion}}</td>
+                        <td>{{cliente.nombre}}</td>
+                        <td>{{cliente.direccion}}</td>
+                        <td>{{cliente.telefono}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>{{cliente.ciudad}}</td>
+                        <td>
+                            <span class="fas fa-edit" style="color: blue; cursor: pointer;" title="Editar"
+                                (click)="cargarDatos(cliente, cliente.id_cliente)"></span>
+                            <span class="fas fa-minus-square" style="color: red; cursor: pointer;" title="Eliminar"
+                                (click)="eliminar(cliente.id_cliente)"></span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

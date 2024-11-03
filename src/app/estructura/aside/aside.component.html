@@ -1,0 +1,185 @@
+<!-- Main Sidebar Container -->
+<aside class="menu main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a [routerLink]="['/dashboard']" class="brand-link">
+        <img src="../../../assets/img/cake.png" alt="Pastel" class="img-logo brand-image img-circle elevation-3"
+            style="opacity: .8">
+        <span class="brand-text font-weight-light marca ml-3">Dulcetón</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
+            <div class="image">
+                <i class="fas fa-user-circle fa-2x img-circle elevation-2"></i>
+            </div>
+            <div class="info ml-3">
+                <a href="#" class="d-block">{{cargo}}</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+       with font-awesome or any other icon font library -->
+                <li class="nav-item">
+                    <a [routerLink]="['/dashboard']" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="cargo == 'Administrador' || cargo == 'Jefe de compras'">
+                    <a [routerLink]="['/categoria']" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Categorias
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="cargo == 'Administrador' || cargo == 'Vendedor' || cargo == 'Practicante'">
+                    <a [routerLink] = "['/pedido']" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                            Pedidos
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a [routerLink] = "['/pedido']" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nueva venta</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink] = "['/pedido']" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ver ventas</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink] = "['/pedido']"class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Consultar venta</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" *ngIf="cargo == 'Administrador' || cargo == 'Vendedor' || cargo == 'Jefe de compras'">
+                    <a [routerLink] = "['/producto']" class="nav-link">
+                        <i class="nav-icon fas fa-tag"></i>
+                        <p>
+                            Productos
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a [routerLink] = "['/producto']" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nuevo producto</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink] = "['/producto']" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ver productos</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" *ngIf="cargo == 'Administrador' || cargo == 'Vendedor' || cargo == 'Practicante'">
+                    <a [routerLink] = "['/cliente']" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Clientes
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a [routerLink] = "['/cliente']" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nuevo cliente</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink] = "['/cliente']" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ver clientes</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item" *ngIf="cargo == 'Administrador' || cargo == 'Jefe de compras'">
+                    <a [routerLink]="['/compra']" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-bag"></i>
+                        <p>
+                            Compras
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a [routerLink] = "['/pedido']" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nueva venta</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink] = "['/compra']" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ver compras</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink] = "['/compra']"class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear compra</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" *ngIf="cargo == 'Administrador'">
+                    <a [routerLink] = "['/usuario']"  class="nav-link">
+                        <i class="nav-icon fas fa-briefcase"></i>
+                        <p>
+                            Usuarios
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a [routerLink] = "['/usuario']"  class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Crear usuario</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink] = "['/usuario']"  class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ver usuarios</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/soporte']" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Soporte
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

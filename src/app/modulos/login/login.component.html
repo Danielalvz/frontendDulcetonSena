@@ -1,0 +1,43 @@
+<header>
+    <nav class="d-flex justify-content-between align-items-center">
+        <img class="logo" src="../../../assets/img/cake.png" alt="Logo Dulcetón">
+        <div class="d-flex justify-content-between align-items-center gap-4 text-center">
+            <div class="d-none d-md-block mr-4">¿No tienes una cuenta?</div>
+            <button class="btn btn-primary btn-nav btn-color"><a href="register.html">Registrarme</a></button>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="d-flex flex-column align-items-center justify-content-center w-100">
+        <h3 class="text-center">Ingresa a Dulcetón</h3>
+        <img class="img-login" src="../../../assets/img/tortas.png" alt="Imagen tortas">
+    </div>
+    <section>
+        <form id="userLoginForm"
+            class="row px-0 container-fluid m-auto user-register form-login d-flex flex-column align-items-center justify-content-center">
+            <div class="col-12 col-lg-8 m-auto mb-3">
+                <label for="inputCorreo" class="form-label">Correo</label>
+                <input type="email" class="form-control" id="inputCorreo" [(ngModel)]="email" name="email">
+            </div>
+            <br>
+            <div class="col-12 col-lg-8 m-auto mb-5">
+                <label for="inputPassword" class="form-label">Contraseña</label>
+                <div class="password-container d-flex align-items-center">
+                    <input type="password" class="form-control" id="inputPassword" [(ngModel)]="password"
+                        name="password">
+                    <i class="fas fa-eye toggle-password"></i>
+                </div>
+            </div>
+            <div class="col-8 m-auto" *ngIf="error == true">
+                <span style="color: #ff557f;">Email o contraseña incorrecta</span><br>
+            </div>
+            <br><br>
+            <button type="submit" class="col-8 col-lg-6 mt-4 m-auto btn btn-primary btn-nav btn-color"
+                (click)="consulta('')">Ingresar</button>
+            <!-- <div id="spanLogin" class="col-12 col-lg-8 m-auto form-text text-center">
+                <a href="#" class="text-reset text-decoration-none"><span class="text-primary">Me olvidé la
+                        contraseña</span></a>
+            </div> -->
+        </form>
+    </section>
+</div>

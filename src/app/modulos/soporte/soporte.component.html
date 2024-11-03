@@ -1,0 +1,32 @@
+<main class="container-fluid py-5 soporte">
+    <div class="row justify-content-center">
+        <form class="col-md-8 needs-validation" novalidate>
+            <fieldset>
+                <legend class="legend-color text-center text-white fs-2">Informe para solicitar soporte</legend>
+                <p class="text-center">Si quieres reportar un error, deja un mensaje el técnico lo estará atendiendo lo más pronto posible</p>
+                <div class="mb-3">
+                    <label class="form-label" for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Tu Nombre" required>
+                    <span class="invalid-feedback">Hubo un error...</span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="asunto">Asunto:</label>
+                    <input type="text" class="form-control" id="asunto" placeholder="Tu Asunto">
+                    <span class="valid-feedback">Muy bien!!</span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Tu Email">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="tel">Mensaje:</label>
+                    <textarea class="form-control" rows="10"></textarea>
+                </div>
+            </fieldset>
+            <div class="d-grid d-md-flex">
+                <input class="btn btn-secondary fs-2 px-5 mt-5" type="submit" value="Enviar Formulario">
+            </div>
+        </form>
+    </div>
+    
+</main>

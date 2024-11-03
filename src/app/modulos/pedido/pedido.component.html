@@ -1,0 +1,186 @@
+<hr>
+
+<div class="row">
+  <button class="btn btn-warning m-auto" style="min-width: 300px;" (click)="mostrarForm('ver')">Insertar Venta</button>
+</div>
+<form *ngIf="mform == true" class="w-75 m-auto">
+  <!-- Compra -->
+  <div class="row mt-4 m-auto">
+    <div class="col-lg-6">
+      <label for="fecha">Fecha</label>
+      <input type="date" id="fecha" class="form-control" placeholder="Fecha de la compra" [(ngModel)]="obj_ventas.fecha"
+        name="fecha">
+      <span style="color: red;" class="error" *ngIf="validar_fecha == false">Ingrese la fecha</span>
+    </div>
+    <div class="col-lg-6">
+      <label>Cliente</label>
+      <select id="fo_cliente" class="form-control form-select" [(ngModel)]="obj_ventas.fo_cliente" name="cliente">
+        <option [ngValue]="0" label="Seleccione Cliente" selected="selected">Seleccione Cliente</option>
+        <option *ngFor="let cliente of clientes" [ngValue]="cliente.id_cliente" label="{{cliente.nombre}}">
+          {{cliente.nombre}}</option>
+      </select>
+      <span class="error" *ngIf="validar_fo_cliente == false">Seleccione cliente</span>
+    </div>
+  </div>
+
+  <div class="row mt-4 m-auto">
+    <div class="col-lg-6">
+      <label>IVA</label>
+      <input type="number" id="iva" class="form-control" placeholder="IVA (%)" [(ngModel)]="obj_ventas.iva" name="iva">
+      <span style="color: red;" class="error" *ngIf="!validar_iva">Ingrese un IVA válido</span>
+    </div>
+
+    <div class="col-lg-6">
+      <label>Usuario</label>
+      <select id="fo_usuario" class="form-control form-select" [(ngModel)]="obj_ventas.fo_usuario" name="usuario">
+        <option [ngValue]="0" label="Seleccione Usuario" selected="selected">Seleccione Usuario</option>
+        <option *ngFor="let user of usuarios" [ngValue]="user.id_usuario" label="{{user.usuario}}">
+          {{user.usuario}}</option>
+      </select>
+      <span class="error" *ngIf="validar_fo_usuario == false">Seleccione usuario</span>
+    </div>
+  </div>
+
+
+  <h3>Agregar Detalle</h3>
+  <!-- Detalles -->
+  <div class="row">
+    <div class="col-lg-12">
+      <label>Producto</label>
+      <select id="fo_producto" class="form-control form-select" [(ngModel)]="nuevoDetalle.fo_producto" name="producto">
+        <option [ngValue]="0" label="Seleccione Producto" selected="selected" disabled>Seleccione Producto</option>
+        <option *ngFor="let prod of productos" [ngValue]="prod.id_producto" label="{{prod.nombre}}">
+        </option>
+      </select>
+      <span class="error" *ngIf="!validar_fo_producto">Seleccione un producto</span>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-lg-6">
+      <label>Cantidad</label>
+      <input type="number" placeholder="Cantidad" class="form-control" [(ngModel)]="nuevoDetalle.cantidad"
+        name="cantidad">
+      <span style="color: red;" class="error" *ngIf="!validar_cantidad">Ingrese una cantidad
+        válida</span>
+    </div>
+    <div class="col-lg-6">
+      <label>Precio</label>
+      <input type="number" class="form-control" [(ngModel)]="nuevoDetalle.precio" name="precio">
+      <span class="error" *ngIf="!validar_precio">Ingrese un precio válido</span>
+    </div>
+  </div>
+  <div class="row align-items-center justify-content-center m-auto"><button class="btn btn-primary mt-4 col-lg-4"
+      (click)="agregarDetalle()">Agregar producto</button></div>
+
+
+
+
+  <h3 class="text-center">Detalles Agregados</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Total</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detalle of obj_ventas.detalles">
+        <td>{{ detalle.producto ? detalle.producto : 'Producto no disponible' }}</td>
+        <td>{{ detalle.cantidad }}</td>
+        <td>{{ detalle.precio }}</td>
+        <td>{{ detalle.cantidad * detalle.precio }}</td>
+        <td>
+          <button (click)="cargarDetalle(detalle)" [disabled]="deshabilitarEdicion">Editar</button>
+          <button (click)="cancelarDetalle(detalle)" *ngIf="botonCancelar">Cancelar</button>
+          <button (click)="eliminarDetalle(detalle.id_detalle_compra)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row" *ngIf="botonGuardarDetalle">
+    <div class="col-lg-12 d-flex justify-content-between align-items-center">
+      <h6>Para guardar los cambios del producto editado:</h6>
+      <button class="btn btn-primary mt-2 col-lg-6" style="max-width: 200px;" (click)="validarVenta('editarDetalle')">Guardar detalle</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <button type="submit" class="btn btn-primary mt-2 col-lg-6" (click)="validarVenta('guardar')"
+      *ngIf="!botonesForm">Guardar
+      Venta</button>
+    <!-- Boton que aparece si se edita -->
+    <input type="button" value="Editar" class="btn btn-primary mt-2 col-lg-6" style="width: 100%;"
+      (click)="validarVenta('editar')" *ngIf="botonesForm">
+    <button value="Cancelar" class="btn btn-secondary mt-2 col-lg-6" (click)="mostrarForm('ocultar')">Cancelar</button>
+  </div>
+</form>
+<div id="tabla">
+  <div class="table-responsive">
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-11">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>No. Venta</th>
+              <th>Fecha</th>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Subtotal</th>
+              <th>IVA</th>
+              <th>Total Venta</th>
+              <th>Cliente</th>
+              <th>Usuario</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let venta of ventas">
+              <!-- Fila principal de la venta -->
+              <tr>
+                <td [attr.rowspan]="venta?.detalles?.length || 1">{{ venta.id_venta }}</td>
+                <td [attr.rowspan]="venta?.detalles?.length || 1">{{ venta.fecha }}</td>
+
+                <!-- Si hay detalles, muestra el primero -->
+                <ng-container *ngIf="venta?.detalles?.length > 0; else sinDetalles">
+                  <td>{{ venta.detalles[0].producto }}</td>
+                  <td>{{ venta.detalles[0].cantidad }}</td>
+                  <td>{{ venta.detalles[0].precio | currency }}</td>
+                  <td>{{ venta.detalles[0].cantidad * venta.detalles[0].precio | currency }}</td>
+                </ng-container>
+
+                <!-- En caso de no haber detalles -->
+                <ng-template #sinDetalles>
+                  <td colspan="4">Sin detalles</td>
+                </ng-template>
+
+                <td [attr.rowspan]="venta?.detalles?.length || 1">{{ venta.iva }}</td>
+                <td [attr.rowspan]="venta?.detalles?.length || 1">{{ calcularTotalConIVA(venta) | currency }}</td>
+                <td [attr.rowspan]="venta?.detalles?.length || 1">{{ venta.cliente }}</td>
+                <td [attr.rowspan]="venta?.detalles?.length || 1">{{ venta.usuario }}</td>
+                <td [attr.rowspan]="venta?.detalles?.length || 1">
+                  <span class="fas fa-edit" style="color: blue; cursor: pointer;" title="Editar"
+                    (click)="cargarDatos(venta, venta.id_venta)"></span>
+                  <span class="fas fa-minus-square" style="color: red; cursor: pointer;" title="Eliminar"
+                    (click)="eliminar(venta.id_venta)"></span>
+                </td>
+              </tr>
+
+              <!-- Filas adicionales para los detalles restantes -->
+              <tr *ngFor="let detalle of venta.detalles?.slice(1)">
+                <td>{{ detalle.producto }}</td>
+                <td>{{ detalle.cantidad }}</td>
+                <td>{{ detalle.precio | currency }}</td>
+                <td>{{ detalle.cantidad * detalle.precio | currency }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

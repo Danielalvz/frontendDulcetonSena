@@ -1,0 +1,140 @@
+
+<hr>
+<div class="row">
+    <button class="btn btn-warning m-auto" (click)="mostrarForm('ver')">Insertar producto</button>
+</div>
+<!-- Formulario -->
+<div id="formulario" *ngIf="mform == true">
+    <form class="m-auto w-75">
+        <h1 *ngIf="botonesForm">Editar Producto</h1>
+        <div class="row mt-4">
+            <div class="col-lg-6 mb-4">
+                <label for="codigo">Código</label>
+                <input type="text" id="codigo" class="form-control" placeholder="Código del producto" name="codigo"
+                    [(ngModel)]="obj_producto.codigo">
+                <span style="color: red;" class="error" *ngIf="validar_codigo == false">Ingrese el
+                    código</span>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <label for="nombre">Nombre del producto</label>
+                <input type="text" id="nombre" placeholder="Nombre del producto" class="form-control" name="nombre"
+                    [(ngModel)]="obj_producto.nombre">
+                <span class="error" *ngIf="validar_nombre == false">Ingrese el nombre el producto</span>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-lg-6 mb-4">
+                <label for="fo_categoria">Categoria</label>
+                <select id="fo_categoria" class="form-control form-select" [(ngModel)]="obj_producto.fo_categoria"
+                    name="categoria">
+                    <option [ngValue]="0" label="Seleccione Categoría" selected="selected">Seleccione Categoría</option>
+                    <option *ngFor="let categoria of categoria" [ngValue]="categoria.id_categoria"
+                        label="{{categoria.nombre}}">{{categoria.nombre}}</option>
+                </select>
+                <span class="error" *ngIf="validar_fo_categoria == false">Seleccione la categoría</span>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <label for="valor_compra">Precio de compra</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" id="valor_compra" class="form-control" placeholder="Precio compra producto"
+                        name="valor_compra" [(ngModel)]="obj_producto.valor_compra">
+                </div>
+                <span class="error" *ngIf="validar_valor_compra == false">Ingrese el precio de compra</span>
+            </div>
+        </div>
+
+
+        <div class="row mt-2">
+            <div class="col-lg-6 mb-4">
+                <label for="valor_venta">Precio de venta</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" id="valor_venta" class="form-control"
+                        placeholder="Precio de venta del producto" name="valor_venta"
+                        [(ngModel)]="obj_producto.valor_venta">
+                </div>
+                <span class="error" *ngIf="validar_valor_venta == false">Ingrese el precio de venta</span>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <label for="stock">Cantidad</label>
+                <input type="number" id="stock" class="form-control" placeholder="Stock disponible" name="stock"
+                    [(ngModel)]="obj_producto.stock">
+                <span class="error" *ngIf="validar_stock == false">Ingrese la cantidad disponible</span>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-lg-6 mb-4">
+                <label for="venta_al_publico">¿Venta al público?</label>
+                <select id="venta_al_publico" class="form-control form-select"
+                    [(ngModel)]="obj_producto.venta_al_publico" name="venta_al_publico">
+                    <option [ngValue]="null" label="Seleccione disponibilidad para la venta" disabled
+                        selected="selected">Seleccione Disponibilidad</option>
+                    <option [ngValue]="1">Sí</option>
+                    <option [ngValue]="0">No</option>
+                </select>
+                <span class="error" *ngIf="!validar_venta_al_publico">Seleccione disponibilidad para la venta</span>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <label for="proveedor">Proveedor</label>
+                <select id="fo_proveedor" class="form-control form-select" [(ngModel)]="obj_producto.fo_proveedor"
+                    name="fo_proveedor">
+                    <option [ngValue]="0" label="Seleccione Proveedor" selected="selected">Seleccione Proveedor</option>
+                    <option *ngFor="let proveedor of proveedor" [ngValue]="proveedor.id_proveedor"
+                        label="{{proveedor.nombre}}"></option>
+                </select>
+                <span class="error" *ngIf="validar_fo_proveedor == false">Seleccione el proveedor</span>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <input type="button" value="Guardar" class="btn btn-primary mt-2 col-lg-6" style="width: 100%;"
+                (click)="validarProducto('guardar')" *ngIf="!botonesForm">
+            <input type="button" value="Editar" class="btn btn-primary mt-2 col-lg-6" style="width: 100%;"
+                (click)="validarProducto('editar')" *ngIf="botonesForm">
+
+            <input type="button" value="Cancelar" class="btn btn-secondary mt-2 col-lg-6" style="width: 100%;"
+                (click)="mostrarForm('ocultar')">
+
+        </div>
+    </form>
+</div>
+<div id="tabla">
+    <div class="table-responsive">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11">
+                <table class="table">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Categoria</th>
+                        <th>Precio Compra</th>
+                        <th>Precio Venta</th>
+                        <th>Stock</th>
+                        <th>Venta al público</th>
+                        <th>Proveedor</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tr *ngFor="let item of producto">
+                        <td>{{item.codigo}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.categoria}}</td>
+                        <td>{{item.valor_compra | currency}}</td>
+                        <td>{{item.valor_venta | currency}}</td>
+                        <td>{{item.stock}}</td>
+                        <td>{{item.venta_al_publico}}</td>
+                        <td>{{item.proveedor}}</td>
+                        <td>
+                            <span class="fas fa-edit" style="color: blue; cursor: pointer;" title="Editar"
+                                (click)="cargarDatos(item, item.id_producto)"></span>
+                            <span class="fas fa-minus-square" style="color: red; cursor: pointer;" title="Eliminar"
+                                (click)="eliminar(item.id_producto)"></span>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
