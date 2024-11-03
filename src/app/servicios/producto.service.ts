@@ -7,7 +7,7 @@ import { Producto } from '../modulos/producto/producto.model';
 })
 export class ProductoService {
 
-  url = 'http://localhost:8080/dulceton-sena/backend/controlador/ProductoControlador.php';
+  url = 'https://backenddulcetonsena-production.up.railway.app/controlador/ProductoControlador.php';
 
   constructor(private http: HttpClient) { }
 

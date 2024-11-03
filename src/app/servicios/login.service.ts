@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  url = "http://localhost:8080/dulceton-sena/backend/controlador/UsuarioControlador.php";
+  url = "https://backenddulcetonsena-production.up.railway.app/controlador/UsuarioControlador.php";
 
   constructor(private http: HttpClient) {}
 

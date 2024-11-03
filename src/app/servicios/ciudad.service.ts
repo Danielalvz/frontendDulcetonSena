@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class CiudadService {
 
-  url = 'http://localhost:8080/dulceton-sena/backend/controlador/CiudadControlador.php ';
+  url = 'https://backenddulcetonsena-production.up.railway.app/controlador/CiudadControlador.php ';
 
   constructor(private http: HttpClient) { }
 
